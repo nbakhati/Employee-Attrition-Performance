@@ -5,7 +5,7 @@ This project analyzes employee attrition and performance trends using:
 - SQL for building advanced HR reports
 - Tableau for interactive dashboards revealing employee satisfaction, tenure, income, and attrition risk insights.
 
-# [View the Live Dashboard]([https://public.tableau.com/app/profile/narayani.bakhati6251/viz/IBM_HR_analytics_Emp_AttritionPerfrmce_dashboard/Dashboard1?publish=yes])
+# [View the Live Dashboard](https://public.tableau.com/app/profile/narayani.bakhati6251/viz/IBM_HR_analytics_Emp_AttritionPerfrmce_dashboard/Dashboard1?publish=yes)
 
 # Data Background
 
