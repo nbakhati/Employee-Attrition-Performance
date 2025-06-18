@@ -1,5 +1,7 @@
+-- Drop raw table if it exists
 DROP TABLE IF EXISTS raw_hr_data;
 
+-- Create raw HR data table (matches the original CSV columns)
 CREATE TABLE raw_hr_data (
   EmployeeNumber INT,
   Age INT,
@@ -8,15 +10,15 @@ CREATE TABLE raw_hr_data (
   JobRole VARCHAR,
   DistanceFromHome INT,
   MonthlyIncome INT,
-  Education INT,
-  EnvironmentSatisfaction INT,
-  JobInvolvement INT,
-  JobSatisfaction INT,
-  PerformanceRating INT,
-  RelationshipSatisfaction INT,
-  WorkLifeBalance INT,
-  Attrition VARCHAR,
-  OverTime VARCHAR,
+  Education INT,                 -- coded 1-5
+  EnvironmentSatisfaction INT,   -- coded 1-4
+  JobInvolvement INT,            -- coded 1-4
+  JobSatisfaction INT,           -- coded 1-4
+  PerformanceRating INT,         -- coded 1-4
+  RelationshipSatisfaction INT,  -- coded 1-4
+  WorkLifeBalance INT,           -- coded 1-4
+  Attrition VARCHAR,             -- 'Yes' or 'No'
+  OverTime VARCHAR,              -- 'Yes' or 'No'
   MaritalStatus VARCHAR,
   BusinessTravel VARCHAR,
   YearsAtCompany INT,
@@ -28,7 +30,10 @@ CREATE TABLE raw_hr_data (
   StockOptionLevel INT
 );
 
+-- Drop the cleaned table if it exists 
 DROP TABLE IF EXISTS cleaned_hr;
+
+-- Create a cleaned version with readable labels for scores
 
 CREATE TABLE cleaned_hr AS
 SELECT
@@ -40,6 +45,7 @@ SELECT
   DistanceFromHome,
   MonthlyIncome,
   Education,
+ -- Decode Education to words
   CASE Education
     WHEN 1 THEN 'Below College'
     WHEN 2 THEN 'College'
@@ -47,48 +53,61 @@ SELECT
     WHEN 4 THEN 'Master'
     WHEN 5 THEN 'Doctor'
   END AS EducationLevel,
+	
   EnvironmentSatisfaction,
+-- Decode Environment Satisfaction
   CASE EnvironmentSatisfaction
     WHEN 1 THEN 'Low'
     WHEN 2 THEN 'Medium'
     WHEN 3 THEN 'High'
     WHEN 4 THEN 'Very High'
   END AS EnvironmentSatisfactionLabel,
+	
   JobInvolvement,
+-- Decode Job Involvement
   CASE JobInvolvement
     WHEN 1 THEN 'Low'
     WHEN 2 THEN 'Medium'
     WHEN 3 THEN 'High'
     WHEN 4 THEN 'Very High'
   END AS JobInvolvementLabel,
+	
   JobSatisfaction,
+-- Decode Job Satisfaction
   CASE JobSatisfaction
     WHEN 1 THEN 'Low'
     WHEN 2 THEN 'Medium'
     WHEN 3 THEN 'High'
     WHEN 4 THEN 'Very High'
   END AS JobSatisfactionLabel,
+	
   PerformanceRating,
+-- Decode Performance Rating
   CASE PerformanceRating
     WHEN 1 THEN 'Low'
     WHEN 2 THEN 'Good'
     WHEN 3 THEN 'Excellent'
     WHEN 4 THEN 'Outstanding'
   END AS PerformanceRatingLabel,
+	
   RelationshipSatisfaction,
+-- Decode Relationship Satisfaction
   CASE RelationshipSatisfaction
     WHEN 1 THEN 'Low'
     WHEN 2 THEN 'Medium'
     WHEN 3 THEN 'High'
     WHEN 4 THEN 'Very High'
   END AS RelationshipSatisfactionLabel,
+	
   WorkLifeBalance,
+--Decode Wrork-life Balance
   CASE WorkLifeBalance
     WHEN 1 THEN 'Bad'
     WHEN 2 THEN 'Good'
     WHEN 3 THEN 'Better'
     WHEN 4 THEN 'Best'
   END AS WorkLifeBalanceLabel,
+	
   Attrition,
   OverTime,
   MaritalStatus,
@@ -103,8 +122,8 @@ SELECT
 FROM raw_hr_data;
 
 
---If NumCompaniesWorked is missing, treat as zero.
-
+-- Example check: If NumCompaniesWorked is missing, treat as zero.
+-- (Just a check — not creating a view)
 SELECT
 	EMPLOYEENUMBER,
 	COALESCE(NUMCOMPANIESWORKED, 0) AS COMPANIESWORKED,
@@ -114,8 +133,9 @@ FROM
 ORDER BY
 	COMPANIESWORKED DESC;
 
--- Attrition by Job Role
+-- Now build useful VIEWS for analysis
 
+-- Attrition by Job Role: how many left, by role
 CREATE VIEW attrition_by_jobrole AS
 SELECT
   JobRole,
@@ -127,8 +147,7 @@ GROUP BY JobRole
 ORDER BY AttritionRate DESC;
 
 
---Average MOnthly Income by Education & Attrition
-
+--Average MOnthly Income split by education level and attrition status
 CREATE VIEW income_by_education_attrition AS
 SELECT
   EducationLevel,
@@ -139,7 +158,7 @@ GROUP BY EducationLevel, Attrition
 ORDER BY EducationLevel, Attrition;
 
 
---Distance from Home by Job Role & Attrition
+-- Average Distance from Home by Role and whether they left
 
 CREATE VIEW distance_by_jobrole_attrition AS
 SELECT
@@ -151,7 +170,7 @@ GROUP BY JobRole, Attrition
 ORDER BY JobRole, Attrition;
 
 
---Top Factors for High Attrition Roles
+-- High Attrition Job Roles + satisfaction scores
 
 CREATE VIEW high_attrition_job_roles AS
 SELECT 
@@ -164,7 +183,7 @@ FROM cleaned_hr
 GROUP BY JobRole
 ORDER BY AttritionRate DESC;
 
---Above-Average Earners in High Attrition Roles
+-- High Income AND High Attrition: find well-paid folks who still quit
 
 CREATE VIEW high_income_high_attrition AS
 SELECT 
@@ -186,7 +205,7 @@ WHERE
 ORDER BY JobRole, MonthlyIncome DESC;
 
 
---Attrition Rate by Tenure Buckets
+--Attrition Rate by Tenure Buckets: bucket employees by how long they've stayed
 CREATE VIEW attrition_by_tenure_bucket AS
 SELECT
   CASE 
@@ -240,7 +259,7 @@ FROM cleaned_hr
 ORDER BY ChurnRisk DESC;
 
 
---Satisfaction + Involvement + Work-Life Balance (by Department)
+--High Satisfaction Departments + Involvement + Work-Life Balance\
 
 CREATE VIEW high_satisfaction_departments AS
 SELECT 
