@@ -36,27 +36,27 @@ Average salary compared across education levels and whether employees stay or le
 
 3. Distance from Home by Job Role & Attrition:
 How average commuting distance varies by job role and attrition status.
-Key Insight: Roles with longer commutes (e.g., Sales Reps, Healthcare Reps) have slightly higher attrition, suggesting commute stress could push employees to quit. Remote/hybrid options might help reduce this risk.
+- Key Insight: Roles with longer commutes (e.g., Sales Reps, Healthcare Reps) have slightly higher attrition, suggesting commute stress could push employees to quit. Remote/hybrid options might help reduce this risk.
 
 4. High Attrition Job Roles:
 Roles ranked by their attrition rate plus their average satisfaction and work-life balance scores.
-Key Insight: High attrition roles often show lower satisfaction and work-life balance scores. Targeted interventions like clearer career paths, workload adjustments, or better manager support can address the root causes.
+- Key Insight: High attrition roles often show lower satisfaction and work-life balance scores. Targeted interventions like clearer career paths, workload adjustments, or better manager support can address the root causes.
 
 5. High Income + High Attrition
 Employees earning above-average salaries who still quit.
-Key Insight: A surprising number of high earners still leave, particularly in Sales Executive roles. This signals that compensation isn’t always the fix — culture, role fit, or burnout may drive exits despite good pay.
+- Key Insight: A surprising number of high earners still leave, particularly in Sales Executive roles. This signals that compensation isn’t always the fix — culture, role fit, or burnout may drive exits despite good pay.
 
 6. Attrition by Tenure Buckets:
 Attrition rate grouped by how long employees have been at the company.
-Key Insight: Early-tenure (2–5 years) show the highest attrition rates — a classic pattern indicating onboarding gaps, unmet role expectations, or lack of early career support.
+- Key Insight: Early-tenure (2–5 years) show the highest attrition rates — a classic pattern indicating onboarding gaps, unmet role expectations, or lack of early career support.
 
 7. Performance Rating vs Attrition:
 Whether top performers quit more or less than others.
-Key Insight: Some high performers (rated Excellent or Outstanding) do leave — which is costly for the company. This highlights the importance of recognizing, rewarding, and advancing top talent to keep them engaged.
+- Key Insight: Some high performers (rated Excellent or Outstanding) do leave — which is costly for the company. This highlights the importance of recognizing, rewarding, and advancing top talent to keep them engaged.
 
 8. Likely to Quit (Churn Risk Flag)
 Employees flagged as ‘Likely to Quit’ based on risky combinations like low satisfaction + overtime + bad work-life balance.
-Key Insight: A clear at-risk segment is identifiable for proactive HR intervention. This flag lets managers focus coaching, recognition, or flexibility where it’s needed most to prevent sudden resignations.
+- Key Insight: A clear at-risk segment is identifiable for proactive HR intervention. This flag lets managers focus coaching, recognition, or flexibility where it’s needed most to prevent sudden resignations.
 
 # Tools Used
 
