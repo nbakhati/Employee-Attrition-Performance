@@ -1,11 +1,11 @@
-#IBM HR Analytics Employee Attrition & Performance
+# IBM HR Analytics Employee Attrition & Performance
 
 This project analyzes employee attrition and performance trends using:
 - PostgreSQL for data cleaning and transformation
 - SQL for building advanced HR reports
 - Tableau for interactive dashboards revealing employee satisfaction, tenure, income, and attrition risk insights.
 
-# [View the Live Dashboard]([https://public.tableau.com/app/profile/narayani.bakhati6251/viz/IBM_HR_analytics_Emp_AttritionPerfrmce_dashboard/Dashboard1?publish=yes]
+# [View the Live Dashboard]([https://public.tableau.com/app/profile/narayani.bakhati6251/viz/IBM_HR_analytics_Emp_AttritionPerfrmce_dashboard/Dashboard1?publish=yes])
 
 # Data Background
 
@@ -28,11 +28,11 @@ For this project:
 # Key Analysis Queries
 1. Attribution by Job Role:
 How many employees leave in each role, plus their attrition rates.
-Key insight: Roles like Sales Executive and Laboratory Technician show higher quit rates compared to roles like Research Director or Manager. This indicates some positions might have higher stress, targets, or fewer growth opportunities, requiring focused retention plans.
+- Key insight: Roles like Sales Executive and Laboratory Technician show higher quit rates compared to roles like Research Director or Manager. This indicates some positions might have higher stress, targets, or fewer growth opportunities, requiring focused retention plans.
 
 2. Average Income by Education & Attrition:
 Average salary compared across education levels and whether employees stay or leave.
-Key Insight: Higher education generally correlates with higher pay, but doesn’t guarantee retention. For example, even Doctorate holders show some attrition — implying that salary alone is not enough to keep top talent engaged.
+- Key Insight: Higher education generally correlates with higher pay, but doesn’t guarantee retention. For example, even Doctorate holders show some attrition — implying that salary alone is not enough to keep top talent engaged.
 
 3. Distance from Home by Job Role & Attrition:
 How average commuting distance varies by job role and attrition status.
